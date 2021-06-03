@@ -1,17 +1,14 @@
 package me.minemis.msmcshop.gui;
 
+import me.minemis.msmcshop.utils.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class GuiBuilder implements InventoryHolder {
 
@@ -30,46 +27,81 @@ public class GuiBuilder implements InventoryHolder {
         this.size = rows * 9;
         inventory = Bukkit.createInventory(holder, size, title);
     }
-    public void addItem(Material material, int position, int amount){
-        if (position > size) position = size;
+
+    @Deprecated
+    public void setItem(Material material, int position, int amount) {
+        if (position >= size) {
+            position = size - 1;
+        }
+
         inventory.setItem(position, new ItemStack(material, amount));
     }
 
-    public void addItem(Material material, int position){
-        if (position > size) position = size;
+    public void setItem(Material material, int position, int amount, String name, String... lore) {
+        if (position >= size) {
+            position = size - 1;
+        }
+
+        ItemStack item = new ItemStack(material, amount);
+        ItemMeta meta = item.getItemMeta();
+
+        if (name != null) {
+            meta.setDisplayName(ChatUtils.color(name));
+        }
+
+        if (lore != null && lore.length != 0) {
+            meta.setLore(ChatUtils.color(Arrays.asList(lore)));
+        }
+
+        item.setItemMeta(meta);
+        inventory.setItem(position, item);
+    }
+
+    public void setItem(Material material, int position){
+        if (position >= size) {
+            position = size - 1;
+        }
+
         inventory.setItem(position, new ItemStack(material));
     }
 
-    public void addItem(Material material, long amount){
-        inventory.addItem(new ItemStack(material, (int) amount));
+    public void addItem(Material material, int amount){
+        inventory.addItem(new ItemStack(material, amount));
     }
 
     public void addItem(Material material){
         inventory.addItem(new ItemStack(material));
     }
 
-    public ItemStack getItemStack(int index){
+    public ItemStack getItemStack(int index) {
         return inventory.getItem(index);
     }
 
-    public void setItemStackMeta(int index, String name, String... lore){
-        if (inventory.getItem(index) == null || inventory.getItem(index).getItemMeta() == null){
+    @Deprecated
+    public void setItemStackMeta(int index, String name, String... lore) {
+        ItemStack item = inventory.getItem(index);
+
+        if (item == null || item.getItemMeta() == null){
             return;
         }
-        ItemStack item = inventory.getItem(index);
+
         ItemMeta meta = item.getItemMeta();
+
         meta.setDisplayName(name);
         meta.setLore(Arrays.asList(lore));
         item.setItemMeta(meta);
     }
 
+    @Deprecated
     public void setItemStackMeta(int index, String name){
-        if (inventory.getItem(index) == null || inventory.getItem(index).getItemMeta() == null){
+        ItemStack item = inventory.getItem(index);
+
+        if (item == null || item.getItemMeta() == null){
             return;
         }
 
-        ItemStack item = inventory.getItem(index);
         ItemMeta meta = item.getItemMeta();
+
         meta.setDisplayName(name);
         item.setItemMeta(meta);
     }

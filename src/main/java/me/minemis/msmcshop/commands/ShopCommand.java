@@ -25,7 +25,7 @@ public class ShopCommand implements CommandExecutor {
 
         Player player = (Player) commandSender;
 
-        player.openInventory(guiManager.getInventory(GuiEnum.SHOPMENU));
+        player.openInventory(guiManager.getInventory(GuiEnum.SHOP_MENU));
 
         return true;
     }

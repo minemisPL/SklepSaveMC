@@ -9,10 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GuiManager {
+
+    //TODO: Naprawić code bo nie działa (generuj dla każdego wywołania komendy przez gracza)
     private final Map<GuiEnum, InventoryHolder> guiMap = new HashMap<>();
 
     public GuiManager(){
-        guiMap.put(GuiEnum.SHOPMENU, new ShopMenuGui(GuiEnum.SHOPMENU));
+        guiMap.put(GuiEnum.SHOP_MENU, new ShopMenuGui(GuiEnum.SHOP_MENU));
         guiMap.put(GuiEnum.TEST , new TestGui(GuiEnum.TEST));
     }
 
@@ -20,7 +22,8 @@ public class GuiManager {
         return guiMap;
     }
 
-    public Inventory getInventory(GuiEnum name){
+    public Inventory getInventory(GuiEnum name) {
         return guiMap.get(name).getInventory();
     }
+
 }

@@ -5,6 +5,7 @@ import me.minemis.msmcshop.gui.GuiManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class ShopMenuExecutor implements ClickExecutor {
 
@@ -16,16 +17,15 @@ public class ShopMenuExecutor implements ClickExecutor {
 
     @Override
     public void execute(InventoryClickEvent event) {
+        ItemStack item = event.getCurrentItem();
 
-        event.setCancelled(true);
-
-        if (event.getCurrentItem() == null){
+        if (item == null){
             return;
         }
 
         Player player = (Player) event.getWhoClicked();
 
-        if (event.getCurrentItem().getType() == Material.GOLD_INGOT){
+        if (item.getType() == Material.GOLD_INGOT) {
             System.out.println("ShopMenuExecutor material test");
 
             player.openInventory(guiManager.getInventory(GuiEnum.TEST));

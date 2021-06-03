@@ -15,8 +15,8 @@ public class TestGui implements SMCInventoryHolder {
         this.id = id;
         GuiBuilder holder = new GuiBuilder(this, 6, "SaveMC sklep - test");
 
-        holder.addItem(Material.DIAMOND_BLOCK, 15, 32);
-        holder.addItem(Material.DIAMOND_BLOCK, 20, 16);
+        holder.setItem(Material.DIAMOND_BLOCK, 15, 32);
+        holder.setItem(Material.DIAMOND_BLOCK, 20, 16);
 
         inventory = holder.getInventory();
     }

@@ -11,17 +11,17 @@ public class ShopMenuGui implements SMCInventoryHolder {
     private final Inventory inventory;
     private final GuiEnum id;
 
-    public ShopMenuGui(GuiEnum id){
-        GuiBuilder holder = new GuiBuilder(this, 1, "SaveMC sklep");
+    public ShopMenuGui(GuiEnum id) {
+        GuiBuilder builder = new GuiBuilder(this, 1, "SaveMC sklep");
         this.id = id;
 
-        holder.addItem(Material.GOLD_INGOT, 3);
-        holder.setItemStackMeta(3,"§eKup", "Kup se dirta byku", "Albo jakieś jajko se pierdolnij");
+        builder.setItem(Material.GOLD_INGOT, 3);
+        builder.setItemStackMeta(3,"§eKup", "Kup se dirta byku", "Albo jakieś jajko se pierdolnij");
 
-        holder.addItem(Material.IRON_INGOT, 5);
-        holder.setItemStackMeta(5,"§6Sprzedaj", "Sprzedaj złom byniu");
+        builder.setItem(Material.IRON_INGOT, 5);
+        builder.setItemStackMeta(5,"§6Sprzedaj", "Sprzedaj złom byniu");
 
-        inventory = holder.getInventory();
+        inventory = builder.getInventory();
     }
 
     @Override

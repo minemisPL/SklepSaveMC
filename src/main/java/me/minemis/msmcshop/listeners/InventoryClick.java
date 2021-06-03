@@ -4,10 +4,10 @@ import me.minemis.msmcshop.gui.GuiManager;
 import me.minemis.msmcshop.gui.clickExecutors.TestExecutor;
 import me.minemis.msmcshop.gui.holders.SMCInventoryHolder;
 import me.minemis.msmcshop.gui.clickExecutors.ShopMenuExecutor;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 
 public class InventoryClick implements Listener {
 
@@ -19,29 +19,23 @@ public class InventoryClick implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event){
+        Inventory inventory = event.getInventory();
 
-        if (event.getClickedInventory() == null){
-            return;
-        }
-        System.out.println("Inventory null test");
-
-        if (!(event.getClickedInventory().getHolder() instanceof SMCInventoryHolder)){
+        if (!(inventory.getHolder() instanceof SMCInventoryHolder)){
             return;
         }
         System.out.println("Instance of SMCInventoryHolder test");
 
         event.setCancelled(true);
 
-        SMCInventoryHolder holder = (SMCInventoryHolder) event.getClickedInventory().getHolder();
+        SMCInventoryHolder holder = (SMCInventoryHolder) inventory.getHolder();
 
-        if (holder == null){
-            return;
-        }
+        //TODO: We ogarnij to. Te enumy w switchu to jakiś rak
+        //TODO: Automatyzacja ma być jakaś np. guiManager.runClick(holder.getId());
+        //TODO: I w tym GuiManager#runClick(GuiEnum id) nie ma być switcha.
 
-        System.out.println("Holder null test");
-
-        switch (holder.getId()){
-            case SHOPMENU: new ShopMenuExecutor(guiManager).execute(event); break;
+        switch (holder.getId()) {
+            case SHOP_MENU: new ShopMenuExecutor(guiManager).execute(event); break;
             case TEST: new TestExecutor().execute(event); break;
         }
 

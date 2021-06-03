@@ -29,4 +29,5 @@ public final class MSMCShop extends JavaPlugin {
     public GuiManager getGuiManager() {
         return guiManager;
     }
+
 }
