@@ -28,15 +28,6 @@ public class GuiBuilder implements InventoryHolder {
         inventory = Bukkit.createInventory(holder, size, title);
     }
 
-    @Deprecated
-    public void setItem(Material material, int position, int amount) {
-        if (position >= size) {
-            position = size - 1;
-        }
-
-        inventory.setItem(position, new ItemStack(material, amount));
-    }
-
     public void setItem(Material material, int position, int amount, String name, String... lore) {
         if (position >= size) {
             position = size - 1;
@@ -57,53 +48,18 @@ public class GuiBuilder implements InventoryHolder {
         inventory.setItem(position, item);
     }
 
-    public void setItem(Material material, int position){
+    public void setItem(Material material, int position, int amount) {
         if (position >= size) {
             position = size - 1;
         }
 
-        inventory.setItem(position, new ItemStack(material));
+        ItemStack item = new ItemStack(material, amount);
+        inventory.setItem(position, item);
     }
 
-    public void addItem(Material material, int amount){
-        inventory.addItem(new ItemStack(material, amount));
-    }
-
-    public void addItem(Material material){
-        inventory.addItem(new ItemStack(material));
-    }
 
     public ItemStack getItemStack(int index) {
         return inventory.getItem(index);
-    }
-
-    @Deprecated
-    public void setItemStackMeta(int index, String name, String... lore) {
-        ItemStack item = inventory.getItem(index);
-
-        if (item == null || item.getItemMeta() == null){
-            return;
-        }
-
-        ItemMeta meta = item.getItemMeta();
-
-        meta.setDisplayName(name);
-        meta.setLore(Arrays.asList(lore));
-        item.setItemMeta(meta);
-    }
-
-    @Deprecated
-    public void setItemStackMeta(int index, String name){
-        ItemStack item = inventory.getItem(index);
-
-        if (item == null || item.getItemMeta() == null){
-            return;
-        }
-
-        ItemMeta meta = item.getItemMeta();
-
-        meta.setDisplayName(name);
-        item.setItemMeta(meta);
     }
 
     public InventoryHolder getHolder() {

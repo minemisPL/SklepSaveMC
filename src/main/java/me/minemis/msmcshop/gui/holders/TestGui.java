@@ -9,10 +9,9 @@ import org.jetbrains.annotations.NotNull;
 public class TestGui implements SMCInventoryHolder {
 
     private final Inventory inventory;
-    private final GuiEnum id;
+    private final GuiEnum id = GuiEnum.TEST;
 
-    public TestGui(GuiEnum id){
-        this.id = id;
+    public TestGui(){
         GuiBuilder holder = new GuiBuilder(this, 6, "SaveMC sklep - test");
 
         holder.setItem(Material.DIAMOND_BLOCK, 15, 32);

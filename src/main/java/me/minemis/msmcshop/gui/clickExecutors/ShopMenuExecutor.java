@@ -26,8 +26,6 @@ public class ShopMenuExecutor implements ClickExecutor {
         Player player = (Player) event.getWhoClicked();
 
         if (item.getType() == Material.GOLD_INGOT) {
-            System.out.println("ShopMenuExecutor material test");
-
             player.openInventory(guiManager.getInventory(GuiEnum.TEST));
         }
     }
