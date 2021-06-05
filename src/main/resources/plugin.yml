@@ -3,6 +3,3 @@ version: ${project.version}
 main: me.minemis.msmcshop.MSMCShop
 api-version: 1.16
 authors: [ minemis ]
-commands:
-  shop:
-    usage: /shop

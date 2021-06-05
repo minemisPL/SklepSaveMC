@@ -1,6 +1,6 @@
 package me.minemis.msmcshop.gui;
 
-public enum GuiEnum {
+public enum GuiIID {
     SHOP_MENU,
     TEST
 }

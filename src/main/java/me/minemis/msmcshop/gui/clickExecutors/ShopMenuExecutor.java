@@ -1,6 +1,6 @@
 package me.minemis.msmcshop.gui.clickExecutors;
 
-import me.minemis.msmcshop.gui.GuiEnum;
+import me.minemis.msmcshop.gui.GuiIID;
 import me.minemis.msmcshop.gui.GuiManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -26,7 +26,8 @@ public class ShopMenuExecutor implements ClickExecutor {
         Player player = (Player) event.getWhoClicked();
 
         if (item.getType() == Material.GOLD_INGOT) {
-            player.openInventory(guiManager.getInventory(GuiEnum.TEST));
+            guiManager.openInventory(player, GuiIID.TEST);
+            player.openInventory(guiManager.getInventory(GuiIID.TEST));
         }
     }
 }

@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 
 public class InventoryClick implements Listener {
 
@@ -16,16 +17,18 @@ public class InventoryClick implements Listener {
     }
 
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent event){
-        Inventory inventory = event.getClickedInventory();
+    public void onInventoryClick(InventoryClickEvent event) {
+        Inventory inventory = event.getInventory();
+        InventoryHolder standardHolder = inventory.getHolder();
 
-        if (inventory == null || !(inventory.getHolder() instanceof SMCInventoryHolder)){
+        if (!(standardHolder instanceof SMCInventoryHolder)) {
             return;
         }
 
+
         event.setCancelled(true);
 
-        SMCInventoryHolder holder = (SMCInventoryHolder) inventory.getHolder();
+        SMCInventoryHolder holder = (SMCInventoryHolder) standardHolder;
 
         guiManager.runClick(holder.getId(), event);
 
